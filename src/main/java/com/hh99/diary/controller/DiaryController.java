@@ -26,7 +26,7 @@ public class DiaryController {
     }
 
     // 일지 등록 화면 띄우기
-    @GetMapping("/diary/new")
+    @GetMapping("/diaries/new")
     public String saveDiary(Model model) {
         model.addAttribute(new DiaryForm());
         return "diaries/saveDiaryFrom";

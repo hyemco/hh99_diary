@@ -15,7 +15,7 @@
 
 <h2> 📌 API 설계 📌 </h2>
 
-![image](https://user-images.githubusercontent.com/98294357/159817582-84d7144c-9e6c-44f4-93d1-5a0369532583.png)
+![image](https://user-images.githubusercontent.com/98294357/159862014-526ada47-d55d-49c8-81a8-bc7f11b6d9a3.png)
 
 <br>
 
