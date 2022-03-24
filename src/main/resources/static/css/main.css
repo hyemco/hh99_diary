@@ -1,0 +1,202 @@
+body {
+    margin: 0px;
+}
+
+.area-edit {
+    display: none;
+}
+
+.wrap {
+    width: 650px;
+    margin: 100px auto 0px auto;
+}
+
+.area-write {
+    position: relative;
+    width: 538px;
+}
+
+.area-write img {
+    cursor: pointer;
+    position: absolute;
+    width: 22.2px;
+    height: 18.7px;
+    bottom: 15px;
+    right: 17px;
+}
+
+.background-header {
+    position: fixed;
+    z-index: -1;
+    top: 0px;
+    width: 100%;
+    height: 260px;
+    background-color: #339af0;
+}
+
+.background-body {
+    position: fixed;
+    z-index: -1;
+    top: 260px;
+    height: 100%;
+    width: 100%;
+    background-color: #dee2e6;
+}
+
+.header {
+    margin-top: 50px;
+}
+
+.header h2 {
+    font-family: 'Noto Sans KR', sans-serif;
+    height: 33px;
+    font-size: 42px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.79;
+    letter-spacing: -0.5px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.header p {
+    margin: 40px auto 10px auto;
+    width: 250px;
+    height: 48px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: -1px;
+    text-align: center;
+    color: #ffffff;
+}
+
+textarea.field {
+    width: 502px !important;
+    height: 146px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: none;
+    padding: 18px;
+    resize: none;
+}
+
+textarea.field::placeholder {
+    width: 216px;
+    height: 16px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: -0.96px;
+    text-align: left;
+    color: #868e96;
+}
+
+.main-banner p {
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.write-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.modal-btn {
+    text-align: right;
+    margin-bottom: 10px;
+    padding-right: 23px;
+}
+
+.info {
+    width: 650px;
+    margin: 30px auto 15px auto;
+    color: #339af0;
+    padding-left: 5px;
+}
+
+.card {
+    width: 620px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    margin: 0 auto 12px auto;
+}
+
+.metadata {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 0px 23px;
+    font-size: 13px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: -0.5px;
+    color: #adb5bd;
+    height: 14px;
+}
+
+.content-box {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 0px 23px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.username {
+    padding-top: 5px;
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+.contents div.text {
+    padding: 0px 23px;
+    margin-top: 10px;
+    margin-top: 10px;
+}
+
+.card div.edit {
+    display: none;
+    padding: 0px 23px;
+}
+
+.card div.title-edit {
+    display: none;
+    margin-bottom: 10px;
+}
+
+.contents textarea.te-edit {
+    resize: none;
+    border-bottom: 1px solid #212529;
+    width: 100%;
+    font-family: 'Spoqa Han Sans';
+}
+
+.contents input.te-edit {
+    resize: none;
+    border-bottom: 1px solid #212529;
+    width: 100%;
+    font-family: 'Spoqa Han Sans';
+}
+
+.form-group {
+    font-weight: bolder;
+}

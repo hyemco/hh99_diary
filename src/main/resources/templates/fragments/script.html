@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--------------------------- 메인 화면 --------------------------->
+<script type="application/javascript" th:inline="javascript" th:fragment="diary_condition">
+        function isValidContents(username, title, contents) {
+        if (title == '') {
+            alert("제목을 입력해주세요.");
+            return false;
+        }
+        if (contents == '') {
+            alert('내용을 입력해주세요.');
+            return false;
+        }
+        return true;
+    }
+</script>
+
+<!--------------------------- 메인 화면 --------------------------->
+<script type="application/javascript" th:inline="javascript" th:fragment="diary_list">
+    $(document).ready(function () {
+        getDiaries();
+
+    })
+
+    // 일지 전체 목록 불러오기
+    function getDiaries() {
+        $.ajax({
+            type: 'GET',
+            url: '/api/diaries',
+            success: function (response) {
+                for (let i = 0; i <response.length; i++) {
+                    let diary = response[i];
+                    let id = diary.id;
+                    let title = diary.title;
+                    let username = diary.username;
+                    let contents = diary.contents;
+                    let modifiedAt = diary.modifiedAt;
+                    addHTML(id, title, username, contents, modifiedAt);
+                }
+            }
+        })
+    }
+
+    // 일지 목록 HTML append 하기
+    function addHTML(id, title, username, contents, modifiedAt) {
+        let temp_html = `<div class="card">
+                                <!-- idx/date 영역 -->
+                                <div class="metadata">
+                                    <div id="${id}-date" class="date">
+                                        ${modifiedAt.substring(0,10)}
+                                    </div>
+                                </div>
+
+                                <!-- title/username 영역-->
+                                <div class="content-box">
+                                    <div class="title-box">
+                                        <a id="${id}-title" class="title" href="/api/diaries/${id}" >
+                                            ${title}
+                                         </a>
+                                    </div>
+                                    <div id="${id}-username" class="username">
+                                        ${username}
+                                    </div>
+                                </div>
+
+                                <!-- 수정/삭제 버튼 영역-->
+                                <div class="modal-btn">
+                                    <img id="${id}-delete" onclick="deleteDiary('${id}')" class="icon-delete" src="img/delete.png" alt="">
+                                </div>
+                            </div>`
+        $('#cards-box').append(temp_html);
+    }
+
+    function deleteDiary(id) {
+        $.ajax({
+            type: 'DELETE',
+            url: `/api/diaries/${id}`,
+            success: function () {
+                alert('일지가 삭제되었습니다');
+                window.location.reload();
+            }
+        })
+    }
+</script>
+
+<!--------------------------- 조회 화면 --------------------------->
+<script type="application/javascript" th:fragment="diary_update">
+    // 일지 수정하기
+    function submitEdit(id) {
+        let username = $(`#${id}_username`).text().trim();
+        let title = $(`#title`).val();
+        let contents = $(`#contents`).val();
+        console.log(id);
+
+        if (isValidContents(username, title, contents) == false) {
+            return;
+        }
+
+        let editData = {'username': username, 'title': title, 'contents': contents};
+        console.log(editData);
+        $.ajax({
+            type: 'PUT',
+            url: `/api/diaries/${id}`,
+            contentType: 'application/json',
+            data: JSON.stringify(editData),
+            success: function (response) {
+                alert('일지가 수정되었습니다');
+                window.location.replace('/');
+            }
+        })
+    }
+
+    // 일지 삭제하기
+    function deleteDiary(id) {
+        $.ajax({
+            type: "DELETE",
+            url: `/api/diaries/${id}`,
+            success: function (response) {
+                alert('일지가 삭제되었습니다');
+                window.location.replace('/');
+            }
+        })
+    }
+</script>

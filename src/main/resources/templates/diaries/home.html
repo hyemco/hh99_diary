@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript" th:src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+
+<body>
+    <div class="background-header"></div>
+    <div class="background-body"></div>
+
+    <div class="container">
+        <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+        <!------------------------ Title Section ------------------------>
+        <div class="main-banner">
+            <p>여러분의 항해 여정을 공유해주세요!</p>
+        </div>
+
+        <div class="write-btn">
+            <a class="btn btn-dark" href="/diary/new">일지 등록</a>
+        </div>
+
+        <div class="info">[안내] 제목을 클릭하면 내용을 확인할 수 있습니다</div>
+
+        <!---------------------- 일지 목록  자리---------------------->
+        <div id="cards-box" class="area-read"></div>
+    </div>
+    <div th:replace="fragments/footer :: footer"/>
+
+    <script th:replace="fragments/script :: diary_list"></script>
+</body>
+</html>

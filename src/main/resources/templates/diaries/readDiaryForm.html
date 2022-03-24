@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" >
+</head>
+<body>
+    <div class="container">
+        <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+
+        <!--/*@thymesVar id="form" type=""*/-->
+        <form method="post" th:action="@{'/api/dreams/' + *{id}}" th:object="${diary}">
+            <!-- id -->
+            <input type="hidden" th:field="*{id}"/>
+
+            <div class="form-group">
+                <p id="username">작성자 : <span th:id="${id}+_username" th:text="*{username}"></span></p>
+            </div>
+            <div class="form-group">
+                <p id="createdAt">작성 일자 : <span th:text="*{#temporals.format(createdAt, 'yyyy-MM-dd HH:mm:ss')}"></span></p>
+            </div>
+            <div class="form-group">
+                <p id="modifiedAt">수정 일자 : <span th:text="*{#temporals.format(modifiedAt, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                </p>
+            </div>
+
+            <div id="title-group" class="form-group">
+                <label for="title">제목</label>
+                <input id="title" type="text" th:field="*{title}" class="form-control"
+                       placeholder="제목을 입력하세요" aria-describedby="titleHelp" required minlength="3" maxlength="20">
+                <small id="titleHelp" class="form-text text-muted">20자이내로 입력해주세요</small>
+            </div>
+            <div id="contents-group" class="form-group">
+                <label for="contents">내용</label>
+                <textarea id="contents" th:field="*{contents}" class="form-control" placeholder="내용을 입력하세요"
+                          aria-describedby="contentsHelp" required minlength="30" maxlength="255" rows="5"></textarea>
+                <small id="contentsHelp" class="form-text text-muted">
+                    255자 이내로 입력하세요
+                </small>
+            </div>
+
+            <!------------ 버튼 ------------>
+            <div class="form-group">
+                <a th:href="@{/}" class="btn btn-secondary float-left">목록으로</a>
+                <button class="btn btn-dark float-right ml-1" type="button" aria-describedby="submitHelp"
+                        th:onclick="|javascript:submitEdit('${id}')|">수정하기
+                </button>
+                <button id="btn-delete" class="btn btn-danger float-right ml-1" type="button"
+                        th:onclick="|javascript:deleteDiary('${id}')|">삭제
+                </button>
+            </div>
+        </form>
+        <br><br>
+    </div>
+    <div th:replace="fragments/footer :: footer"/>
+    <script th:replace="fragments/script :: diary_condition"></script>
+    <script th:replace="fragments/script :: diary_update"></script>
+</body>
+</html>
