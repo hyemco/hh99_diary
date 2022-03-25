@@ -5,25 +5,30 @@
     <div class="container">
         <div th:replace="fragments/bodyHeader :: bodyHeader"/>
         <!--/*@thymesVar id="form" type=""*/-->
-        <form th:action="@{/api/diaries}" th:object="${diaryForm}" method="post">
+        <form th:action="@{/api/diaries}" th:object="${diaryForm}" method="post" onsubmit="return isValidSave()">
             <div class="form-group">
                 <label th:for="username">작성자</label>
-                <input type="text" th:field="*{username}" class="form-control" placeholder="이름을 입력하세요">
+                <input type="text" th:field="*{username}" class="form-control" required  maxlength="6" placeholder="이름을 입력하세요">
+                <small id="titleHelp" class="form-text text-muted">6자이내로 입력해주세요</small>
             </div>
             <div class="form-group">
                 <label th:for="title">제목</label>
-                <input type="text" th:field="*{title}" class="form-control" placeholder="제목을 입력하세요">
+                <input type="text" th:field="*{title}" class="form-control" required minlength="3" maxlength="20" placeholder="제목을 입력하세요">
+                <small id="titleHelp" class="form-text text-muted">3자 이상 20자이내로 입력해주세요</small>
             </div>
             <div class="form-group">
                 <label th:for="contents">내용</label>
                 <textarea type="text" th:field="*{contents}" rows="4" class="form-control"
-                          placeholder="내용을 입력하세요"></textarea>
+                          placeholder="내용을 입력하세요" required minlength="20" maxlength="255"></textarea>
+                <small id="contentsHelp" class="form-text text-muted">20자 이상 255자 이내로 입력하세요</small>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     <br/>
     </div>
     <div th:replace="fragments/footer :: footer"/>
+    <script th:replace="fragments/script :: diary_condition"></script>
+
 </body>
 </html>
 </label>
