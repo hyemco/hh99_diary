@@ -3,6 +3,7 @@ package com.hh99.diary.controller;
 import com.hh99.diary.domain.Diary;
 import com.hh99.diary.domain.DiaryForm;
 import com.hh99.diary.domain.DiaryRepository;
+import com.hh99.diary.domain.DiaryRequestDto;
 import com.hh99.diary.service.DiaryService;
 import org.springframework.stereotype.Controller;
 import lombok.RequiredArgsConstructor;
@@ -50,16 +51,18 @@ public class DiaryController {
     // 일지 상세보기
     @GetMapping("/api/diaries/{id}")
     public String readDiary(@PathVariable Long id, Model model) {
-        Optional<Diary> diary = diaryRepository.findById(id);
-        model.addAttribute("diary", diary.get());
+        Diary diary = diaryRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("게시글이 존재하지 않습니다.")
+        );
+        model.addAttribute(diary);
         return "diaries/readDiaryForm";
     }
 
     // 일지 수정하기
     @ResponseBody
     @PutMapping("/api/diaries/{id}")
-    public Long updateDiary(@PathVariable Long id, @RequestBody DiaryForm diaryForm) {
-        diaryService.update(id, diaryForm);
+    public Long updateDiary(@PathVariable Long id, @RequestBody DiaryRequestDto requestDto) {
+        diaryService.update(id, requestDto);
         return id;
     }
 

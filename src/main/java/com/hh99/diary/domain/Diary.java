@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-public class Diary extends com.hh99.diary.domain.Timestamped { // 생성,수정 시간을 자동으로 만들어줌
+public class Diary extends Timestamped { // 생성,수정 시간을 자동으로 만들어줌
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
@@ -30,16 +30,22 @@ public class Diary extends com.hh99.diary.domain.Timestamped { // 생성,수정 
         this.contents = contents;
     }
 
-    public Diary(com.hh99.diary.domain.DiaryForm diaryForm) {
+    public Diary(DiaryForm diaryForm) {
         this.title = diaryForm.getTitle();
         this.username = diaryForm.getUsername();
         this.contents = diaryForm.getContents();
     }
 
-    public void update(com.hh99.diary.domain.DiaryForm diaryForm) {
-        this.title = diaryForm.getTitle();
-        this.username = diaryForm.getUsername();
-        this.contents = diaryForm.getContents();
+    public Diary(DiaryRequestDto requestDto) {
+        this.title = requestDto.getTitle();
+        this.username = requestDto.getUsername();
+        this.contents = requestDto.getContents();
+    }
+
+    public void update(DiaryRequestDto requestDto) {
+        this.title = requestDto.getTitle();
+        this.username = requestDto.getUsername();
+        this.contents = requestDto.getContents();
     }
 
 }
